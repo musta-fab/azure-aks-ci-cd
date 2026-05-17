@@ -17,15 +17,15 @@ jobs:
     # Login to Azure
     - uses: azure/login@v2
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.SP JSON }}
 
     # Login to ACR
-    - run: az acr login --name ${{ secrets.ACR_NAME }}
+    - run: az acr login --name ${{ secrets.mustaacr }}
 
     # Build & Push (amd64 enforced)
     - name: Build and Push
       run: |
-        IMAGE=${{ secrets.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        IMAGE=${{ secrets.mustaacr }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
         docker build --platform linux/amd64 -t $IMAGE .
         docker push $IMAGE
         echo "IMAGE=$IMAGE" >> $GITHUB_ENV
@@ -33,8 +33,8 @@ jobs:
     # Set AKS context
     - uses: azure/aks-set-context@v4
       with:
-        resource-group: ${{ secrets.RESOURCE_GROUP }}
-        cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+        resource-group: ${{ secrets.6pm-rg }}
+        cluster-name: ${{ secrets.6pmk8s }}
 
     # Deploy
     - name: Deploy
