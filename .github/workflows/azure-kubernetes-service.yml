@@ -17,7 +17,18 @@ jobs:
     # Login to Azure
     - uses: azure/login@v2
       with:
-        creds: ${{ secrets.SP JSON }}
+        creds: ${{ secrets.{
+  "clientId": "b2153d1d-47aa-443c-91d4-114c677bb459",
+  "clientSecret": "gAU8Q~.Bsf8y6cNzvTUP1wdPqUGJAsdC7FucwcwC",
+  "subscriptionId": "a9ac7173-ebb3-49b0-bea0-ac378cb83086",
+  "tenantId": "ecb2ece6-5898-4b32-9563-29243d97ab03",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+} }}
 
     # Login to ACR
     - run: az acr login --name ${{ secrets.mustaacr }}
